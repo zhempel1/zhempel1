@@ -1,0 +1,89 @@
+"""
+Atticus and Rowan 
+lab 8
+Tuesday, March 22
+"""
+
+
+from random import *
+
+def main():
+    word = getword()
+    instruction()
+    previous_guesses = []
+    guess = ["_"]*len(word)
+
+    corr = 0
+    incorr = 0
+    rround = 1
+
+    while corr != len(word) and incorr != 8:
+        ans = play_round(word, guess, previous_guesses)
+        rround +=1
+        if ans == True:
+            corr +=1
+        if ans == False:
+            incorr +=1
+
+
+
+    if corr == len(word):
+        print("great job!")
+    if corr != len(word):
+        print("better luck next time")
+
+def getword():
+    """
+    This function reads a word list to pick a correct word and
+    make it into a list made up of the word's letters. getword()
+    then returns this list of letters.
+    """
+
+    return "apple"
+
+def instruction():
+    """
+    This function prints the instructons for the game.
+    """
+    print("========")
+
+def play_round(word, guess, previous_guesses):
+    """
+    This function starts by printing the "now we will start one round"
+    This function then runs get_letter which would get the letter from
+    the person doing the code 
+    Then this function looks as to whether or not the user-letter is in the
+    chosen word 
+    If the letter is in word then the function makes the list value the same
+    as the words list value and it would return 1 that gets added to wins in
+    main
+    if the letter is not in word then we return 0
+    word is a list that represents the correct word.
+    guess is a list that represets the user's guess of the word at a particular
+    moment.
+    previous_guesses is a list that represents everything that the user has
+    already guessed.
+    """
+    print("now we will start one round")
+    letter = get_letter(previous_guesses)
+    if letter in word:
+        return True
+
+    if letter not in word:
+        return False
+
+
+def get_letter(previous_guesses):
+    """
+    This function checks to make sure the letter guess is a lower case letter  
+    if it is not lower case then it identifies this and runs the convert function
+    if it is not a letter then this function asks for anther letter guess
+    this function also makes sure the guessed letter has not been guessed before
+    previous_guesses is a list that represents everything that the user has
+    already guessed.
+    """
+    letter = input("type letter: ")
+    return letter
+                 
+                 
+main()
